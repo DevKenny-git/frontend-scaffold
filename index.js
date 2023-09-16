@@ -1,50 +1,43 @@
-const fs = require('fs');
+const fs = require("fs");
 const path = require("path");
 
 function createFirstFolder() {
-    fs.mkdir("./frontend-scaffold", (err) => {
-        if (err) return console.log(err);
+    try {
+        fs.mkdirSync("./frontend-scaffold");
         console.log("Frontend-Scaffold Created Successfully");
-    });
-
+    } catch (error) {
+        console.log("Unable to create folder due to", error);
+    }
 }
 
 function createSecondFolder() {
-    fs.mkdir("./frontend-scaffold/css", (err) => {
-        if (err) {
-            console.log(err);
-            return;
-        
-        }
-        console.log("css folder created successfully")
-    });
-
+   try {
+        fs.mkdirSync("./frontend-scaffold/css");
+        console.log("css folder created successfully");
+   } catch (error) {
+        console.log("Unable to create folder due to", error);
+   }
 }
 
 function createThirdFolder() {
-    fs.mkdir("./frontend-scaffold/js", (err) => {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        console.log("js folder created successfully")
-    });
-
+    try {
+        fs.mkdirSync("./frontend-scaffold/js");
+        console.log("js folder created successfully");
+    } catch (error) {
+        console.log("Unable to create folder due to", error);
+    }
 }
 
 function createFourthFolder() {
-    fs.mkdir("frontend-scaffold/images", (err) => {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        console.log("images folder created successfully")
-    });
-
+    try {
+            fs.mkdirSync("frontend-scaffold/images");
+            console.log("images folder created successfully");            
+    } catch (error) {
+        console.log(error);
+    }
 }
     
 function createHtmlFile() {
-
     const htmlContent = `
     <!DOCTYPE html>
     
@@ -75,13 +68,12 @@ function createHtmlFile() {
     </html>
     `;
     
-    fs.writeFile(path.join("frontend-scaffold", "index.html"), htmlContent, (err) => {
-        if (err) {
-            console.log(err);
-            return
-        }
-        console.log("index.html is created successfully");
-    });
+    try {
+        fs.writeFileSync(path.join("frontend-scaffold", "index.html"), htmlContent);
+        console.log("index.html is created successfully");        
+    } catch (error) {
+        console.log("Encountered error creating file", error);
+    }
 }
 
 function createCssFile() {
@@ -93,28 +85,24 @@ function createCssFile() {
         }    
     `;
     
-    fs.writeFile(path.join("frontend-scaffold", "css", "style.css"), cssContent, (err) => {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        console.log("style.css created successfully")
-    });
-
+    try {
+        fs.writeFileSync(path.join("frontend-scaffold", "css", "style.css"), cssContent);
+        console.log("style.css created successfully")        
+    } catch (error) {
+        console.log("Encountered error creating file", error)
+    }
+    
 }
 
 const createJsFile = () => {
 
     const jsContent = 'alert("Welcome");'
-
-
-    fs.writeFile(path.join("frontend-scaffold", "js", "script.js"), jsContent , (err) => {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        console.log("script.js created successfully")
-    })
+    try {
+        fs.writeFileSync(path.join("frontend-scaffold", "js", "script.js"), jsContent)
+        console.log("script.js created successfully")        
+    } catch (error) {
+        console.log("Encountered error creating file", error);
+    }    
 }
 
 function createFrontendScaffold() {
